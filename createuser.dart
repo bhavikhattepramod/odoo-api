@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:odoo/access.dart';
+import 'package:odoo/homepage.dart';
 import 'package:odoo/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +19,18 @@ class _Create_UserState extends State<Create_User> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Create User"),
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Home_Page()),
+            );
+          },
+        ),
+      ),
       backgroundColor: Colors.purple,
       body: SafeArea(
         child: Column(
@@ -144,6 +157,8 @@ class _Create_UserState extends State<Create_User> {
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: InkWell(
                           onTap: () async {
+                            snack();
+
                             // if (_formKey.currentState!.validate()) {
                             //   print("hello");
 
@@ -194,7 +209,7 @@ class _Create_UserState extends State<Create_User> {
                             ),
                             child: Center(
                               child: Text(
-                                'Login',
+                                'Create ',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -213,5 +228,17 @@ class _Create_UserState extends State<Create_User> {
       // ),
       // ),
     );
+  }
+
+  void snack() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+        'User Created Succesfully',
+        textAlign: TextAlign.center,
+      ),
+      duration: Duration(seconds: 2),
+      // backgroundColor: Colors.grey,
+      behavior: SnackBarBehavior.floating,
+    ));
   }
 }

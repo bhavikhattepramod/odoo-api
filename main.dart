@@ -1,7 +1,7 @@
 import 'package:odoo/createuser.dart';
+import 'package:odoo/homepage.dart';
 import 'package:odoo/login.dart';
 import 'package:flutter/material.dart';
-
 import 'access.dart';
 import 'splash.dart';
 
@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Splash());
+        home: Login_Page());
   }
 }

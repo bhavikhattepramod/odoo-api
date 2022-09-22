@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:odoo/homepage.dart';
 
 import 'createuser.dart';
 // import 'package:odoo/CreateUser.dart';
@@ -111,9 +112,10 @@ class _Login_PageState extends State<Login_Page> {
                     ),
                     SizedBox(height: 30),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: InkWell(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: InkWell(
                           onTap: () async {
+                            snackbar();
                             // if (_formKey.currentState!.validate()) {
                             //   print("hello");
 
@@ -143,9 +145,10 @@ class _Login_PageState extends State<Login_Page> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Create_User()),
+                                      builder: (context) => Home_Page()),
                                 );
                               }
+
                               print("Hi" + response.statusCode.toString());
                               print(jsonDecode(response.body));
                               //login();
@@ -168,13 +171,25 @@ class _Login_PageState extends State<Login_Page> {
                                 ),
                               ),
                             ),
-                          )),
-                    ),
+                          ),
+                        )),
                   ],
                 )),
           ],
         ),
       ),
     );
+  }
+
+  void snackbar() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+        'Logged In Succesfully',
+        textAlign: TextAlign.center,
+      ),
+      duration: Duration(seconds: 2),
+      // backgroundColor: Colors.grey,
+      behavior: SnackBarBehavior.floating,
+    ));
   }
 }
